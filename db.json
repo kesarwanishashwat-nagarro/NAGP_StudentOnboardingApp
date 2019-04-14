@@ -1,6 +1,6 @@
 {
   "auth": [
-    { "id": 1, "userid": "YWRtaW4=", "password": "cG9pMDk4cG9p" }
+    { "id": 1, "userid": "YWRtaW4=", "pwd": "cG9pMDk4cG9p" }
   ],
   "comments": [
     { "id": 1, "body": "some comment", "postId": 1 }
