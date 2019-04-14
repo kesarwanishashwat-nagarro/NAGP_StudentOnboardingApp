@@ -1,0 +1,44 @@
+.auth-container{
+    position: fixed;
+    width: 100%;
+    height:100%;
+    .bg{
+        position: absolute;
+        top:0px;
+        left:0px;
+        height:100%;
+        width:100%;
+        background: url(../../../assets/images/bg-image.jpg) center;
+        background-size: cover;
+        z-index: -1;
+    }
+    .bg-overlay{
+        position: absolute;
+        top:0px;
+        left:0px;
+        height:100%;
+        width:100%;
+        background: rgba($color: #000000, $alpha: 0.8);
+        z-index: -1;
+    }
+    .box-container{
+        max-width:340px;
+        margin: auto;
+        &.login-container{
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 8%;
+            border-radius: 10px;
+        }
+        &.brand-container{
+            display: flex;
+            color: #fff;
+            margin-top:80px;
+            font-size: 28px;
+            font-weight: 700;
+            .logo{
+                margin-right:10px;
+            }
+        }
+    }
+}

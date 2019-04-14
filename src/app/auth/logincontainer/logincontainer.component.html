@@ -1,0 +1,20 @@
+<div class="box-container">
+    <h3>Login to account</h3>
+    <p>Please enter your credentials to onboard the students.</p>
+    <form #loginForm="ngForm" novalidate>
+        <div class="input-group">
+            <input type="text" class="form-control" required placeholder="Enter Username">
+        </div>
+        <div class="input-group">
+            <input type="password" class="form-control" required placeholder="Enter Password" >
+        </div>
+        <div class="action-group">
+            <div class="action">
+                <button type="button" class="btn btn-primary">Login</button>
+            </div>
+            <div class="action shift-down">
+                <a href="/forgot-pass">Forgot Password?</a>
+            </div>
+        </div>
+    </form>
+</div>

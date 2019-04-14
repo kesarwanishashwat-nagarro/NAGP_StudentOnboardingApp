@@ -1,0 +1,16 @@
+.box-container{
+    h3{
+        font-weight: 700;
+    }
+    .action-group{
+        display: flex;
+        .action{
+            margin-right:10px;
+            font-size: 14px;
+            margin-top:20px;
+            &.shift-down{
+                margin-top: 25px;
+            }
+        }
+    }
+}
