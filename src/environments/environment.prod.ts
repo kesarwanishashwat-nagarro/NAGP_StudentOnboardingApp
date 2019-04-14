@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl : 'https://kesarwanishashwat-nagarro.github.io/NAGP_StudentOnboardingApp/'
+  apiUrl : 'https://my-json-server.typicode.com/kesarwanishashwat-nagarro/NAGP_StudentOnboardingApp'
 };
