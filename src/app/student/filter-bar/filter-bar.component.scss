@@ -48,11 +48,16 @@
             .custom-textbox{
                 height:100%;
                 padding: 10px;
-                border: solid 2px #000;
+                border: none;
+                border-bottom: solid 2px #000;
+                border-top: solid 2px #000;
                 outline: none;
                 transition: all 0.3s ease-out;
+                width: 175px;
                 &:focus{
-                    border: solid 2px $primary-color;
+                    border-bottom: solid 2px $primary-color;
+                    border-top: solid 2px $primary-color;
+                    width: 250px;
                 }
             }
             .fa{

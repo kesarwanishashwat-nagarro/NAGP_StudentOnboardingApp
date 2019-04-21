@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from '../services/message.service';
 
@@ -21,6 +21,8 @@ export class HeaderComponent implements OnInit {
   showLogoutModal: boolean;
   showMessage: boolean;
   messageDesc: string;
+  @ViewChild('headerRef') headerRef;
+  sticky;
   constructor(private _router: Router, private _msgService: MessageService) { }
 
   ngOnInit() {
@@ -28,15 +30,30 @@ export class HeaderComponent implements OnInit {
       this.messageDesc = this._msgService.desc;
       this.showMessage = show;
     });
+
+    this.sticky = this.headerRef.nativeElement.offsetTop;
+    window.onscroll = () => {
+      this.scrollWindow();
+    };
   }
 
   isActive(item) {
-    const isActive = this.selectedItem === item || ( window && window.location.pathname.indexOf(item.link) >= 0);
+    const isActive = this.selectedItem === item || (window && window.location.pathname.indexOf(item.link) >= 0);
     return isActive;
   }
 
-  logout(){
+  logout() {
     this._router.navigateByUrl('/login');
+  }
+
+  scrollWindow() {
+    if (window.pageYOffset > this.sticky) {
+      this.headerRef.nativeElement.classList.add("sticky");
+      this._msgService.headerSticked.next(true);
+    } else {
+      this.headerRef.nativeElement.classList.remove("sticky");
+      this._msgService.headerSticked.next(false);
+    }
   }
 
 }

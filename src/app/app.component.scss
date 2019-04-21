@@ -14,4 +14,7 @@
 .page-body {
     flex-grow: 1;
     transition: all .5s ease-out;
+    &.sticky-header{
+        padding-top: 74px;
+    }
 }

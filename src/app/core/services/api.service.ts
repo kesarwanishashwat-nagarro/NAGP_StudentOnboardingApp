@@ -9,8 +9,9 @@ import { LoaderService } from './loader.service';
 })
 export class ApiService {
 
-  constructor(private _http: HttpClient,private _loader:LoaderService) { }
+  constructor(private _http: HttpClient, private _loader: LoaderService) { }
   baseUrl = environment.apiUrl;
+  
   get<T>(url: string, params?: HttpParams) {
     this._loader.show();
     return this._http.get<T>(this.baseUrl + url, { params: params }).pipe(
@@ -26,7 +27,7 @@ export class ApiService {
       finalize(() => this._loader.hide()),
     );
   }
-  
+
   put<S, T>(url: string, body: S) {
     this._loader.show();
     return this._http.put<T>(this.baseUrl + url, body).pipe(

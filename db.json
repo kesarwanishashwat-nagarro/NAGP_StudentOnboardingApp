@@ -58,12 +58,6 @@
       "id": 5
     },
     {
-      "category": "International",
-      "name": "sk",
-      "father_name": "vk",
-      "mother_name": "mk",
-      "last_score": 50,
-      "dob": "4/8/2019",
       "documents": {
         "Domicile": true,
         "Marksheets": true,
@@ -72,7 +66,47 @@
         "Passport": true,
         "Declaration": true
       },
-      "id": 6
+      "category": "International",
+      "name": "Vishal",
+      "father_name": "Anuj",
+      "mother_name": "Avriti",
+      "last_score": 40,
+      "dob": "4/9/2002",
+      "id": 7
+    },
+    {
+      "category": "Domestic",
+      "name": "Student 3",
+      "father_name": "Father 3",
+      "mother_name": "Mother 3",
+      "last_score": 98,
+      "dob": "4/7/2019",
+      "documents": {
+        "Domicile": true,
+        "Marksheets": true,
+        "Birth Certificate": true,
+        "Police Clearance": null,
+        "Passport": null,
+        "Declaration": true
+      },
+      "id": 8
+    },
+    {
+      "documents": {
+        "Domicile": true,
+        "Marksheets": true,
+        "Birth Certificate": true,
+        "Police Clearance": true,
+        "Passport": true,
+        "Declaration": true
+      },
+      "category": "International",
+      "name": "Dhoni",
+      "father_name": "Father Dhoni",
+      "mother_name": "Mother Dhoni",
+      "last_score": 67,
+      "dob": "9/10/2018",
+      "id": 10
     }
   ]
 }

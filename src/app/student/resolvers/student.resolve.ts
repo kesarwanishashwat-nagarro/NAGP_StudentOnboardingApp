@@ -11,6 +11,6 @@ export class StudentResolver implements Resolve<IStudent> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): IStudent | Observable<IStudent> | Promise<IStudent> {
     const id = route.params['id'];
-    return  this._studentService.getSelectedStudent(id).pipe();
+    return  this._studentService.getSelectedStudent(id);
   }
 }

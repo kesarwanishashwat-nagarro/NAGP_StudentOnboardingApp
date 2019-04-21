@@ -1,6 +1,7 @@
 @import "../../../styles/_theme.scss";
 footer{
     background-color: $secondary-color;
+    background: url(../../../assets/images/header-back.png) center no-repeat;
     .footer-container{
         color: #fff;
         padding:10px;

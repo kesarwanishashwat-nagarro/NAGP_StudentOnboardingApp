@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PopupModalComponent } from './popup-modal.component';
+import { ModalModule } from 'ngx-bootstrap';
 
 describe('PopupModalComponent', () => {
   let component: PopupModalComponent;
@@ -8,7 +9,8 @@ describe('PopupModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PopupModalComponent ]
+      declarations: [ PopupModalComponent ],
+      imports: [ModalModule.forRoot()]
     })
     .compileComponents();
   }));

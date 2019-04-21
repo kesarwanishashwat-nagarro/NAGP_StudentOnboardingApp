@@ -10,11 +10,42 @@ nav{
 }
 .collapse{
     display: block;
+    .bg-dark{
+        background: url(../../../assets/images/header-back.png) no-repeat center;
+    }
 }
 .navbar{
     position: sticky;
+    .navbar-collapse{
+        max-width: 260px;
+    }
     .navbar-brand{
         color: $secondary-color;
+    }
+    .message-box{
+        flex-grow: 1;
+        margin-right: 50px;
+        max-width: 670px;
+        margin: 0px auto;
+        height:0;
+        overflow: hidden;
+        transition: all .5s ease-out;
+        &.show{
+            height:100%;
+        }
+        .alert{
+            margin-bottom: 0px;
+            height: 100%;
+            p{
+                margin-bottom: 0px;
+            }
+            .fa{
+                margin-right: 10px;
+            }
+        }
+        .close{
+            margin-top: -24px;
+        }
     }
     .right-options{
         float: right;
@@ -54,15 +85,18 @@ nav{
         text-align: center;
         h2{
             margin-top: 32px;
-            color: red;
         }
         .fa{
             color: red;
         }
     }
 }
-.message-box{
-    .close{
-        margin-top: -40px;
-    }
-}
+
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    box-shadow: 0px 4px 10px;
+  }

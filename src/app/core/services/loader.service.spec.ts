@@ -9,4 +9,16 @@ describe('LoaderService', () => {
     const service: LoaderService = TestBed.get(LoaderService);
     expect(service).toBeTruthy();
   });
+
+  it('should be show loader', () => {
+    const service: LoaderService = TestBed.get(LoaderService);
+    service.show();
+    expect(service.isLoaderShown).toBeTruthy();
+  });
+
+  it('should be hide loader', () => {
+    const service: LoaderService = TestBed.get(LoaderService);
+    service.hide();
+    expect(service.isLoaderShown).toBeFalsy();
+  });
 });

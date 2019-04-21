@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoaderService } from './core/services/loader.service';
 import { TrackAuthService } from './core/track-auth.service';
 import { NavigationStart, NavigationEnd, NavigationCancel, NavigationError, Router } from '@angular/router';
+import { MessageService } from './core/services/message.service';
 
 @Component({
   selector: 'app-root',
@@ -12,17 +13,20 @@ export class AppComponent implements OnInit {
   enableLoader: boolean;
   title = 'NAGP-StudentOnboarding';
   isLoggedIn: boolean;
-  constructor(private _loader: LoaderService, private _trachAuth: TrackAuthService,private _router: Router){
+  isHeaderStick: boolean;
+  constructor(private _loader: LoaderService, private _trackAuth: TrackAuthService,
+    private _router: Router, private _msgService: MessageService){
 
   }
   ngOnInit(): void {
     this._loader.loader$.subscribe((flag) => Promise.resolve(null).then(() => this.enableLoader = flag));
-    this._trachAuth.isAuthenticated$.subscribe( (auth) => {
+    this._trackAuth.isAuthenticated$.subscribe( (auth) => {
       this.isLoggedIn = auth;
     });
     this._router.events.subscribe((routerEvent: any) => {
       this.checkRouterEvent(routerEvent);
     });
+    this._msgService.headerSticked.subscribe((isStick) => this.isHeaderStick = isStick);
   }
 
   checkRouterEvent(routerEvent: Event): void {
@@ -36,4 +40,5 @@ export class AppComponent implements OnInit {
       this.enableLoader = false;
     }
   }
+
 }

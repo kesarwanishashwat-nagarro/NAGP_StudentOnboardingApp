@@ -10,7 +10,7 @@
 <div class="box-container">
     <h3>Login to account</h3>
     <p>Please enter your credentials to onboard the students.</p>
-    <form #loginForm="ngForm" class="form" novalidate>
+    <form #loginForm="ngForm" class="form" novalidate (ngSubmit)="logon()">
         <div class="input-group">
             <div class="form-row">
                 <input type="text" class="form-control" required placeholder="Enter Username" name="username" #username="ngModel" [(ngModel)]="user.username">
@@ -25,7 +25,7 @@
         </div>
         <div class="action-group">
             <div class="action">
-                <button type="button" class="btn btn-primary" [disabled]="loginForm.invalid || loginForm.pristine" (click)="logon()">Login</button>
+                <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid || loginForm.pristine">Login</button>
             </div>
             <div class="action shift-down">
                 <a href="/forgot-pass">Forgot Password?</a>

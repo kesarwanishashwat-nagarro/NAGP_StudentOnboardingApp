@@ -105,14 +105,16 @@ export class OnboardComponent implements OnInit {
         .subscribe(() => {
           this._msgService.showMessage('Successfully updated the student');
           this.registrationForm.reset();
+          window.scrollTo(0,0);
         });
     }
     else {
       this._studentService.onBoardStudent(this.registrationForm.value)
-        .subscribe(() => {
-          this._msgService.showMessage('Successfully added the student');
-          this.registrationForm.reset();
-        });
+      .subscribe(() => {
+        this._msgService.showMessage('Successfully added the student');
+        this.registrationForm.reset();
+        window.scrollTo(0,0);
+      });
     }
   }
 
