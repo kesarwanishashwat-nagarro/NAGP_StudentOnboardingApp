@@ -1,9 +1,78 @@
 {
   "auth": [
-    { "id": 1, "userid": "YWRtaW4=", "pwd": "cG9pMDk4cG9p" }
+    {
+      "id": 1,
+      "userid": "YWRtaW4=",
+      "pwd": "cG9pMDk4cG9p",
+      "name": "admin"
+    }
   ],
-  "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 }
+  "docs": [
+    {
+      "id": 1,
+      "name": "Domicile",
+      "category": "both"
+    },
+    {
+      "id": 2,
+      "name": "Marksheets",
+      "category": "both"
+    },
+    {
+      "id": 3,
+      "name": "Birth Certificate",
+      "category": "both"
+    },
+    {
+      "id": 6,
+      "name": "Police Clearance",
+      "category": "International"
+    },
+    {
+      "id": 6,
+      "name": "Passport",
+      "category": "International"
+    },
+    {
+      "id": 6,
+      "name": "Declaration",
+      "category": "both"
+    }
   ],
-  "profile": { "name": "typicode" }
+  "students": [
+    {
+      "documents": {
+        "Domicile": true,
+        "Marksheets": true,
+        "Birth Certificate": true,
+        "Police Clearance": null,
+        "Passport": null,
+        "Declaration": true
+      },
+      "category": "Domestic",
+      "name": "ajay",
+      "father_name": "manoj",
+      "mother_name": "kareena",
+      "last_score": 23,
+      "dob": "2/4/2019",
+      "id": 5
+    },
+    {
+      "category": "International",
+      "name": "sk",
+      "father_name": "vk",
+      "mother_name": "mk",
+      "last_score": 50,
+      "dob": "4/8/2019",
+      "documents": {
+        "Domicile": true,
+        "Marksheets": true,
+        "Birth Certificate": true,
+        "Police Clearance": true,
+        "Passport": true,
+        "Declaration": true
+      },
+      "id": 6
+    }
+  ]
 }

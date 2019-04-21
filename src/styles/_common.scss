@@ -1,0 +1,38 @@
+@import "../styles/_theme.scss";
+.input-group{
+    margin:20px 0px;
+}
+
+form{
+    .form-row{
+        width: 100%;
+    }
+    .error,.required{
+        font-size: 14px;
+        color: red;
+        &::before{
+            content: '*';
+        }
+    }
+    .form-control{
+        &.disabled{
+            pointer-events: none;
+            background-color: #e9ecef;
+        }
+    }
+}
+
+
+.btn-primary:disabled{
+    background-color: lightgray;
+    border-color: lightgray;
+    cursor: not-allowed;
+}
+
+.highlight-light{
+    color: $tertiary-color;
+}
+
+.highlight-dark{
+    color: $primary-color;
+}

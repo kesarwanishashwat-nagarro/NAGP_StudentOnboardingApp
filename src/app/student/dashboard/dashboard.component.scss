@@ -1,0 +1,47 @@
+.dashboard-conatiner{
+    max-width: 70%;
+    background-color: #fff;
+    min-height: calc(100vh - 219px);
+    margin:0px auto;
+    padding: 50px;
+    transition: all 0.5s ease-out;
+    h1{
+        font-weight: 900;
+        color: darkslategray;
+    }
+    .filter-bar-container{
+        margin-top: 50px;
+    }
+    .card-deck{
+        .card-wrap{
+            flex: 1;
+            margin: 40px auto;
+            &.list{
+                min-width: 100%;
+            }
+            &.grid{
+                min-width: calc(100%/3);
+            }
+            transition: width 0.5s ease-out;
+        }
+    }
+}
+
+.temp-contain{
+    text-align: center;
+    h6{
+        color: lightgray;
+    }
+}
+.heading{
+    min-width: 400px;
+    .head-container{
+        text-align: center;
+        h2{
+            margin-top: 32px;
+        }
+        .fa{
+            color: red;
+        }
+    }
+}

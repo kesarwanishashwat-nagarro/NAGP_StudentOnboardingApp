@@ -1,0 +1,68 @@
+@import "../../../styles/_theme.scss";
+.filter-container{
+    .left{
+        .fa{
+            margin:0px 10px;
+            transition: all 0.3s ease-out;
+            cursor: pointer;
+            &:hover{
+                color: $primary-color;
+            }
+            &.active{
+                color: $primary-color;
+            }
+        }
+        .seperator{
+            font-size: 40px;
+        }
+    }
+    .center{
+        width: 100px;
+        margin: 0 auto;
+        text-align: center;
+        .row{
+            height: 75%;
+            margin: auto 0px;
+            margin-top: 18px;
+            .content{
+                text-align: center;
+                display: flex;
+                width: 400px;
+                margin: 0 auto;
+                h4{
+                    margin: 0 20px;
+                    cursor: pointer;
+                    &:hover,&.active{
+                        color: orange;
+                    }
+                }
+            }
+        }
+    }
+    .right{
+        .row{
+            height: 75%;
+            margin: auto 0px;
+            text-align: right;
+            margin-top:10px;
+            .custom-textbox{
+                height:100%;
+                padding: 10px;
+                border: solid 2px #000;
+                outline: none;
+                transition: all 0.3s ease-out;
+                &:focus{
+                    border: solid 2px $primary-color;
+                }
+            }
+            .fa{
+                position: absolute;
+                top: 13px;
+                right: 20px;
+            }
+        }
+    }
+    .clear{
+        clear: both;
+    }
+}

@@ -1,0 +1,17 @@
+.form-container{
+    max-width: 70%;
+    margin:0px auto;
+    padding: 50px;
+}
+
+bs-datepicker-inline{
+    &.disabled{
+        pointer-events: none;
+        /deep/ bs-datepicker-inline-container .bs-datepicker{
+            background-color:lightgrey;
+            .bs-datepicker-head{
+                background-color: darkgrey;
+            }
+        }
+    }
+}

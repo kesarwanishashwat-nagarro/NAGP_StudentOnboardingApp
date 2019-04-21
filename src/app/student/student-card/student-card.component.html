@@ -1,0 +1,22 @@
+  <div class="card mb-3" [ngClass]="cardData?.category == 'Domestic' ? 'dom' : 'int'">
+    <div class="card-back"></div>
+    <div class="card-front">
+        <div class="card-header">
+          <span>{{cardData?.name}}</span>
+          <span class="pull-right title2">{{cardData?.category}}</span>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><span class="title">Father's Name:</span> {{cardData?.father_name}}</p>
+          <p class="card-text"><span class="title">Mother's Name:</span> {{cardData?.mother_name}}</p>
+          <p class="card-text"><span class="title">Date of Birth:</span> {{cardData?.dob | date}}</p>
+          <p class="card-text"><span class="title">Last Score:</span> {{cardData?.last_score}}</p>
+        </div>
+    </div>
+    <div class="card-cover"  [ngClass]="cardData?.category == 'Domestic' ? 'dom' : 'int'">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-success" (click)="onViewClick()"><em class="fa fa-eye"></em></button>
+            <button type="button" class="btn btn-info" (click)="onEditClick()"><em class="fa fa-pencil"></em></button>
+            <button type="button" class="btn btn-danger" (click)="onDeleteClick()"><em class="fa fa-trash"></em></button>
+        </div>
+    </div>
+  </div>

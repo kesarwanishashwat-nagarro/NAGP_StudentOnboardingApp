@@ -1,0 +1,17 @@
+.wrapper{
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    display: flex;
+    flex-direction: column;
+    transition: all .5s ease-out;
+}
+.page-header,
+.page-footer {
+    flex-shrink: 0;
+}
+
+.page-body {
+    flex-grow: 1;
+    transition: all .5s ease-out;
+}

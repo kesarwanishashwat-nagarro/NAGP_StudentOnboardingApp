@@ -1,0 +1,17 @@
+.modal-container{
+    position: fixed;
+    z-index: 3;
+    .main-modal{
+        z-index: 5;
+    }
+}
+
+// .show{
+//     opacity: 1;
+//     display: block;
+// }
+
+// .hide{
+//     opacity: 0;
+//     display: none;
+// }

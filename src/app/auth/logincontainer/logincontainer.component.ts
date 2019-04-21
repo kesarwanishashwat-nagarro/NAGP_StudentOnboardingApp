@@ -4,17 +4,20 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { timer, Observable, Subscription } from 'rxjs';
 import { TrackAuthService } from 'src/app/core/track-auth.service';
+import { LoaderService } from 'src/app/core/services/loader.service';
 
 @Component({
   selector: 'app-logincontainer',
   templateUrl: './logincontainer.component.html',
   styleUrls: ['./logincontainer.component.scss']
 })
-export class LogincontainerComponent implements OnInit,OnDestroy {
+export class LogincontainerComponent implements OnInit, OnDestroy {
   user: IUserLogon;
   isLoginError: boolean;
   timerSubscription: Subscription;
-  constructor(private _authService: AuthService,private _trackAuthService: TrackAuthService, private _router: Router) { }
+  constructor(private _authService: AuthService,
+    private _trackAuthService: TrackAuthService,
+    private _router: Router) { }
 
   ngOnInit() {
     this.user = new UserLogOn();
@@ -22,12 +25,12 @@ export class LogincontainerComponent implements OnInit,OnDestroy {
   }
 
   logon() {
-    this._authService.logon(this.user).subscribe((res: any[]) => {
-      if(res.length){
-        this._trackAuthService.setAuthentication(true);
+    this._authService.logon(this.user).subscribe((res: IUserLogon[]) => {
+      if (res.length) {
+        this._trackAuthService.setAuthentication(true,res[0].name);
         this._router.navigateByUrl('/');
       }
-      else{
+      else {
         this.isLoginError = true;
         this.user = new UserLogOn();
         const timer$ = timer(3000);
@@ -38,7 +41,7 @@ export class LogincontainerComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.timerSubscription){
+    if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();
     }
   }

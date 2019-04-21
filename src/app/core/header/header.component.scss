@@ -1,0 +1,68 @@
+@import "../../../styles/_theme.scss";
+.contain{
+    width: 70%;
+    margin:0 auto;
+}
+nav{
+    .contain{
+        display: flex;
+    }
+}
+.collapse{
+    display: block;
+}
+.navbar{
+    position: sticky;
+    .navbar-brand{
+        color: $secondary-color;
+    }
+    .right-options{
+        float: right;
+        font-weight: 700;
+        color: $secondary-color;
+        .seperator{
+            margin:0 20px;
+            font-size: 35px;
+            color: $tertiary-color;
+        }
+        .fa-sign-out{
+            cursor: pointer;
+            transition: all .5s ease-out;
+            &:hover{
+                color: black;
+            }
+        }
+    }
+}
+.nav-item{
+    font-weight: 600;
+    &.active{
+        background-color: #fff;
+        pointer-events: none;
+    }
+    a{
+        color: #000;
+        &:hover{
+            color: #fff;
+        }
+    }
+}
+
+.heading{
+    min-width: 400px;
+    .head-container{
+        text-align: center;
+        h2{
+            margin-top: 32px;
+            color: red;
+        }
+        .fa{
+            color: red;
+        }
+    }
+}
+.message-box{
+    .close{
+        margin-top: -40px;
+    }
+}

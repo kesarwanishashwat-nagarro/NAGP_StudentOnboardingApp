@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LandingComponent } from './landing.component';
+import { TrackAuthService } from 'src/app/core/track-auth.service';
+import { LogincontainerComponent } from '../logincontainer/logincontainer.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+const serviceStub = {
+  setAuthentication: jasmine.createSpy('setAuthentication')
+}
 
 describe('LandingComponent', () => {
   let component: LandingComponent;
@@ -8,7 +14,11 @@ describe('LandingComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LandingComponent ]
+      declarations: [ LandingComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers : [
+        { provide: TrackAuthService, useValue: serviceStub },
+      ]
     })
     .compileComponents();
   }));

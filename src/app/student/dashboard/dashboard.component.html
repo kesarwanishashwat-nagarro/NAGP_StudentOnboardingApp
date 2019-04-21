@@ -1,3 +1,41 @@
-<p>
-  dashboard works!
-</p>
+<div class="dashboard-conatiner">
+  <h1>Welcome {{name | titlecase}}</h1>
+  <div class="filter-bar-container">
+    <app-filter-bar [categories]="categories" (onSearchChange)="onSearchChange($event)"
+      (onListClicked)="showList = true" (onGridClicked)="showList = false"
+      (categoryChanged)="onFilterCategoryChanged($event)"></app-filter-bar>
+  </div>
+  <div class="card-deck">
+    <app-student-card class="card-wrap" [ngClass]="showList ? 'list' : 'grid'"
+      *ngFor="let student of studentList | searchBy : {searchField : searchField, searchText: searchText}"
+      [cardData]="student" (viewBtnClick)="viewStudentDetails($event)" (editBtnClick)="editStudentDetails($event)"
+      (deleteBtnClick)="intiateDeleteStudent($event)">
+    </app-student-card>
+  </div>
+</div>
+
+<app-popup-modal [title]="'Delete Student'" [showModal]="showDeleteModal" [bodyTemplate]="deleteModalBody"
+  [footerTemplate]="footerTemp" (modalClosed)="showDeleteModal = false">
+  <ng-template #deleteModalBody>
+    <div class="heading">
+      <div class="head-container">
+        <em class="fa fa-ban fa-3x"></em>
+        <h2>Do you want to delete the student ?</h2>
+      </div>
+    </div>
+    <div class="temp-contain">
+      <h6>Name : </h6>
+      <p>{{selectedStudent?.name}}</p>
+      <h6>Father's Name</h6>
+      <p>{{selectedStudent?.father_name}}</p>
+      <h6>Mother's Name :</h6>
+      <p>{{selectedStudent?.mother_name}}</p>
+      <h6>Date of Birth : </h6>
+      <p>{{selectedStudent?.dob}}</p>
+    </div>
+  </ng-template>
+  <ng-template #footerTemp>
+      <button type="button" class="btn btn-secondary" (click)="showDeleteModal = false">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="deleteStudent()">Delete</button>
+  </ng-template>
+</app-popup-modal>

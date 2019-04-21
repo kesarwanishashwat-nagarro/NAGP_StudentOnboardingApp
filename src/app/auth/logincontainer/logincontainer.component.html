@@ -10,12 +10,18 @@
 <div class="box-container">
     <h3>Login to account</h3>
     <p>Please enter your credentials to onboard the students.</p>
-    <form #loginForm="ngForm" novalidate>
+    <form #loginForm="ngForm" class="form" novalidate>
         <div class="input-group">
-            <input type="text" class="form-control" required placeholder="Enter Username" name="username" [(ngModel)]="user.username">
+            <div class="form-row">
+                <input type="text" class="form-control" required placeholder="Enter Username" name="username" #username="ngModel" [(ngModel)]="user.username">
+            </div>
+            <div class="error" *ngIf="username.touched && username.errors?.required">Please enter username.</div>
         </div>
         <div class="input-group">
-            <input type="password" class="form-control" required placeholder="Enter Password" name="password"  [(ngModel)]="user.password">
+            <div class="form-row">
+                <input type="password" class="form-control" required placeholder="Enter Password" name="password"  #password="ngModel" [(ngModel)]="user.password">
+            </div>
+            <div class="error" *ngIf="password.touched && password.errors?.required">Please enter password.</div>
         </div>
         <div class="action-group">
             <div class="action">

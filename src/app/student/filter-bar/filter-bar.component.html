@@ -1,0 +1,24 @@
+<div class="row filter-container">
+  <div class="left col-sm-2">
+    <em class="fa fa-th-list fa-2x" (click)="listClick()" [class.active]="isListActive"></em>
+    <span class="seperator">|</span>
+    <em class="fa fa-th-large fa-2x" (click)="gridClick()" [class.active]="!isListActive"></em>
+  </div>
+  <div class="center col-sm-7">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="content">
+            <h4  [class.active]="selectedCategory === ct" (click)="categoryClick(ct)" *ngFor="let ct of categories">{{ct | uppercase}}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="right col-sm-3">
+      <div class="row">
+          <div class="col-sm-12">
+            <input type="text" class="custom-textbox" id="SearchName" [(ngModel)]="searchtext" placeholder="Search By Name .." (ngModelChange)="onInputChange()">
+            <em class="fa fa-search"></em>
+          </div>
+        </div>
+  </div>
+</div>

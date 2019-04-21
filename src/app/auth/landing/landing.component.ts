@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TrackAuthService } from 'src/app/core/track-auth.service';
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _trackAuth: TrackAuthService) { }
 
   ngOnInit() {
+    this._trackAuth.setAuthentication(false);
   }
 
 }
