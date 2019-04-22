@@ -2,9 +2,6 @@
 @import "./styles/_common.scss";
 @import "./styles/_theme.scss";
 
-html {
-    scroll-behavior: smooth;
-  }
 body{
     background-color: $tertiary-color;
 }

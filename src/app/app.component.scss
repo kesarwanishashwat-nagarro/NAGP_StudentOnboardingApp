@@ -4,7 +4,6 @@
     grid-template-rows: auto 1fr auto;
     display: flex;
     flex-direction: column;
-    transition: all .5s ease-out;
 }
 .page-header,
 .page-footer {
@@ -13,8 +12,7 @@
 
 .page-body {
     flex-grow: 1;
-    transition: all .5s ease-out;
-    &.sticky-header{
-        padding-top: 74px;
-    }
+}
+.sticky-header + .page-body{
+    padding-top: 74px;
 }
