@@ -4,6 +4,7 @@ import { IStudent } from '../core/model/models';
 import { Observable, of } from 'rxjs';
 import { LocalStorageService } from '../core/services/local-storage.service';
 import { map } from 'rxjs/internal/operators/map';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -84,9 +85,11 @@ export class StudentDataService {
     const localStudent = students.filter( (student) => student.id === id)[0];
     const index = students.indexOf(localStudent);
     students.splice(index, 1);
-    return this._api.delete(this.studentAPI + '/' + id).pipe(map((data) => {
-      this.local.updateData(this.studentAPI, students);
-      return data;
+    console.log('deleted');
+    this.local.updateData(this.studentAPI, students);
+    return this._api.delete(this.studentAPI + '/' + id).pipe(catchError((d) => {
+      console.log(d);
+      return of(students);
     }));
   }
 }
