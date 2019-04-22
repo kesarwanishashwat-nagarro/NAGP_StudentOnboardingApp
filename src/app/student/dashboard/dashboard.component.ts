@@ -37,7 +37,6 @@ export class DashboardComponent implements OnInit {
     this._studentService.getAllStudents()
       .subscribe((response: IStudent[]) => {
         this.studentList = response;
-        console.log(this.studentList);
         this._studentList = JSON.parse(JSON.stringify(this.studentList));
       });
   }
