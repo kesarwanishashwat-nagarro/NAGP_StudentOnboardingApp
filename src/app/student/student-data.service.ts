@@ -70,9 +70,9 @@ export class StudentDataService {
     }
     const localStudent = students.filter((student) => student.id === id)[0];
     const index = students.indexOf(localStudent);
+    student.id = id;
     students.splice(index, 1);
-    localStudent.id = id;
-    students.splice(index, 0, localStudent);
+    students.splice(index, 0, student);
     this.local.updateData(this.studentAPI, students);
     return this._api.put<IStudent, IStudent>(this.studentAPI + Constants.common.slash + id, student).pipe(catchError(() => {
       return of(student);
