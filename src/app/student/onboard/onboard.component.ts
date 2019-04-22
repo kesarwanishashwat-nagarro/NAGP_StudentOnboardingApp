@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IStudent, IOnboardDocuments, IDocument } from 'src/app/core/model/models';
 import { BsDatepickerConfig, BsDaterangepickerDirective } from 'ngx-bootstrap';
 import { MessageService } from 'src/app/core/services/message.service';
+import { Constants } from 'src/app/core/constants';
 
 @Component({
   selector: 'app-onboard',
@@ -18,14 +19,14 @@ export class OnboardComponent implements OnInit {
 
   bsConfig: Partial<BsDatepickerConfig>;
   @ViewChild('dp') datepicker: BsDaterangepickerDirective;
-  colorTheme = 'theme-dark-blue'
+  colorTheme = Constants.onboard.calenderDarkBlue;
   registrationForm: FormGroup;
   studentId: number
   studentData: IStudent;
   documentOptions: IDocument[];
   CategoryOptions = [
-    { name: "Domestic", id: 1 },
-    { name: "International", id: 2 }
+    { name: Constants.categories[0], id: 1 },
+    { name: Constants.categories[1], id: 2 }
   ];
   isEdit: boolean;
   id: number
@@ -34,12 +35,12 @@ export class OnboardComponent implements OnInit {
 
   ngOnInit() {
     this.isNoStudentFound = false;
-    this.documentOptions = this._route.snapshot.data['documents'];
-    const resolvedStudent = this._route.snapshot.data['student'];
+    this.documentOptions = this._route.snapshot.data[Constants.onboard.docResolverkey];
+    const resolvedStudent = this._route.snapshot.data[Constants.onboard.studentResolverKey];
     this.id = this._route.snapshot.params['id'];
     if (resolvedStudent && resolvedStudent.length) {
       this.studentData = resolvedStudent[0];
-      if(this.studentData){
+      if (this.studentData) {
         this.selectedCategory = this.studentData.category;
       }
     }
@@ -55,21 +56,21 @@ export class OnboardComponent implements OnInit {
     });
     this.bsConfig = {
       containerClass: this.colorTheme,
-      dateInputFormat: 'MMMM Do YYYY',
+      dateInputFormat: Constants.onboard.dateFormat,
       maxDate: new Date(),
       value: this.studentData ? this.studentData.dob : new Date()
     }
-    if(this.datepicker){
+    if (this.datepicker) {
       this.datepicker.setConfig();
     }
     if (this.id) {
-      if(this.studentData){
+      if (this.studentData) {
         this.isEdit = this._studentService.isEdit;
         this.fillStudentDetails(this.studentData);
         if (!this.isEdit) {
           this.registrationForm.disable();
         }
-      }else{
+      } else {
         this.isNoStudentFound = true;
       }
     }
@@ -90,11 +91,11 @@ export class OnboardComponent implements OnInit {
   private fillStudentDetails(student: IStudent) {
     this.registrationForm.setValue({
       category: student.category || this.selectedCategory,
-      name: student.name || '',
-      father_name: student.father_name || '',
-      mother_name: student.mother_name || '',
+      name: student.name || Constants.common.emptyString,
+      father_name: student.father_name || Constants.common.emptyString,
+      mother_name: student.mother_name || Constants.common.emptyString,
       last_score: student.last_score || 0,
-      dob: student.dob || '',
+      dob: student.dob || Constants.common.emptyString,
       documents: this.getDocumentsList(student.documents)
     });
   }
@@ -113,18 +114,18 @@ export class OnboardComponent implements OnInit {
     if (isEdit && this.studentData) {
       this._studentService.saveEditedStudent(this.studentData.id, this.registrationForm.value)
         .subscribe(() => {
-          this._msgService.showMessage('Successfully updated the student');
+          this._msgService.showMessage(Constants.messages.updateStudent);
           this.registrationForm.reset();
-          window.scrollTo(0,0);
+          window.scrollTo(0, 0);
         });
     }
     else {
       this._studentService.onBoardStudent(this.registrationForm.value)
-      .subscribe(() => {
-        this._msgService.showMessage('Successfully added the student');
-        this.registrationForm.reset();
-        window.scrollTo(0,0);
-      });
+        .subscribe(() => {
+          this._msgService.showMessage(Constants.messages.createStudent);
+          this.registrationForm.reset();
+          window.scrollTo(0, 0);
+        });
     }
   }
 

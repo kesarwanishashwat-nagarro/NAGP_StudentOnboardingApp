@@ -20,6 +20,14 @@ form{
             background-color: #e9ecef;
         }
     }
+    input.ng-touched{
+        &.ng-invalid{
+            border-color: red;
+        }
+        &.ng-valid{
+            border-color: green;
+        }
+    }
 }
 
 

@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from '../services/message.service';
+import { INavItem } from '../model/models';
+import { Constants } from '../constants';
 
 @Component({
   selector: 'app-header',
@@ -9,21 +11,14 @@ import { MessageService } from '../services/message.service';
 })
 export class HeaderComponent implements OnInit {
   windiw = window;
-  menuItems = [{
-    name: 'Dashboard',
-    link: '/student/dashboard'
-  }, {
-    name: 'Onboard Students',
-    link: '/student/onboard'
-  }
-  ]
+  menuItems =  Constants.navItems;
   selectedItem;
   showLogoutModal: boolean;
   showMessage: boolean;
   messageDesc: string;
   @ViewChild('headerRef') headerRef;
   sticky;
-  constructor(private _router: Router, private _msgService: MessageService) { }
+  constructor(public _router: Router, private _msgService: MessageService) { }
 
   ngOnInit() {
     this._msgService.message.subscribe((show) => {
@@ -37,13 +32,8 @@ export class HeaderComponent implements OnInit {
     };
   }
 
-  isActive(item) {
-    const isActive = this.selectedItem === item || (window && window.location.pathname.indexOf(item.link) >= 0);
-    return isActive;
-  }
-
   logout() {
-    this._router.navigateByUrl('/login');
+    this._router.navigateByUrl(Constants.routes.login);
   }
 
   scrollWindow() {

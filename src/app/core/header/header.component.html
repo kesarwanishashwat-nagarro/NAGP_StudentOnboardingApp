@@ -13,7 +13,7 @@
       <a class="navbar-brand"><em class="fa fa-graduation-cap fa-2x"></em></a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item" *ngFor="let item of menuItems" [class.active]="isActive(item)">
+          <li class="nav-item" *ngFor="let item of menuItems" [class.active]="_router.url.indexOf(item.identifier) >= 0">
             <a class="nav-link" [routerLink]="[item.link]" (click)="selectedItem = item">{{item.name}} <span class="sr-only">(current)</span></a>
           </li>
         </ul>

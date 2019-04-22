@@ -4,6 +4,12 @@ export interface IUserLogon {
     name: string;
 }
 
+export interface INavItem{
+    name: string;
+    link: string;
+    identifier: string;
+}
+
 export interface IOnboardDocuments {
     domicile: boolean;
     birth_certificate: boolean;

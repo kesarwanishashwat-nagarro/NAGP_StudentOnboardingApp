@@ -50,9 +50,9 @@
         "Declaration": true
       },
       "category": "Domestic",
-      "name": "ajay",
-      "father_name": "manoj",
-      "mother_name": "kareena",
+      "name": "Hardik Pandya",
+      "father_name": "Deviliers",
+      "mother_name": "Henry",
       "last_score": 56,
       "dob": "2/12/2019",
       "id": 5
@@ -67,18 +67,18 @@
         "Declaration": true
       },
       "category": "International",
-      "name": "Vishal",
-      "father_name": "Anuj",
-      "mother_name": "Avriti",
+      "name": "M S Dhoni",
+      "father_name": "Anuj Dhoni",
+      "mother_name": "Avriti Dhoni",
       "last_score": 60,
       "dob": "4/9/2002",
       "id": 7
     },
     {
       "category": "Domestic",
-      "name": "Student 3",
-      "father_name": "Father 3",
-      "mother_name": "Mother 3",
+      "name": "Virat Kohli",
+      "father_name": "Jairaj Kohli",
+      "mother_name": "Anandi Kohli",
       "last_score": 98,
       "dob": "4/7/2019",
       "documents": {
@@ -101,9 +101,9 @@
         "Declaration": true
       },
       "category": "International",
-      "name": "Dhoni",
-      "father_name": "Father Dhoni",
-      "mother_name": "Mother Dhoni",
+      "name": "R Ashwin",
+      "father_name": "Ashwin Chandra",
+      "mother_name": "Divya",
       "last_score": 67,
       "dob": "9/10/2018",
       "id": 10
@@ -118,9 +118,9 @@
         "Declaration": true
       },
       "category": "International",
-      "name": "test student",
-      "father_name": "test father",
-      "mother_name": "test mother",
+      "name": "K L Rahul",
+      "father_name": "Rahul kumar",
+      "mother_name": "Sudha",
       "last_score": 69,
       "dob": "10/14/2018",
       "id": 11
@@ -135,9 +135,9 @@
         "Declaration": true
       },
       "category": "International",
-      "name": "test 1",
-      "father_name": "tf1",
-      "mother_name": "tf 2",
+      "name": "Suresh Raina",
+      "father_name": "Jaidev Raina",
+      "mother_name": "Raina Devi",
       "last_score": 78,
       "dob": "4/11/2019",
       "id": 13
@@ -152,9 +152,9 @@
         "Declaration": true
       },
       "category": "International",
-      "name": "test 2",
-      "father_name": "tf 2",
-      "mother_name": "tm 2",
+      "name": "Sourav Ganguly",
+      "father_name": "Abhijeet Ganguly",
+      "mother_name": "Sandhya Ganguly",
       "last_score": 89,
       "dob": "1/6/2019",
       "id": 14

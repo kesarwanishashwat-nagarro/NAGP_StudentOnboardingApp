@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Guid } from "guid-typescript";
 import { BehaviorSubject } from 'rxjs';
+import { Constants } from './constants';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +19,9 @@ export class TrackAuthService {
     this._authenticated = auth;
     if (auth) {
       const guid = Guid.create();
-      window.localStorage.setItem('appToken', guid.toString());
-      if(name){
-        window.localStorage.setItem('personName', name);
+      window.localStorage.setItem(Constants.localstorageKeys.appToken, guid.toString());
+      if (name) {
+        window.localStorage.setItem(Constants.localstorageKeys.personName, name);
       }
     }
     else {

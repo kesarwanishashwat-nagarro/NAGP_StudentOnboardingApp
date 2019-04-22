@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { finalize } from 'rxjs/operators';
 import { MessageService } from 'src/app/core/services/message.service';
+import { Constants } from 'src/app/core/constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +21,7 @@ export class DashboardComponent implements OnInit {
   searchText: string;
   showList: boolean;
   searchField: string;
-  categories = ['Domestic', 'International'];
+  categories = Constants.categories;
   constructor(private _studentService: StudentDataService,
     private _router: Router, private _loader: LoaderService,
     private _msgService: MessageService
@@ -28,8 +29,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this._studentService.isEdit = false;
-    if (window.localStorage.getItem('personName')) {
-      this.name = window.localStorage.getItem('personName')
+    if (window.localStorage.getItem(Constants.localstorageKeys.personName)) {
+      this.name = window.localStorage.getItem(Constants.localstorageKeys.personName)
     }
     this.getStudents();
   }
@@ -45,13 +46,13 @@ export class DashboardComponent implements OnInit {
     this.selectedStudent = student;
     this._studentService.isEdit = false;
     this._studentService.setSelectedStudent(student);
-    this._router.navigateByUrl('student/onboard/' + student.id);
+    this._router.navigateByUrl(Constants.routes.onboard + student.id);
   }
 
   editStudentDetails(student: IStudent) {
     this._studentService.setSelectedStudent(student);
     this._studentService.isEdit = true;
-    this._router.navigateByUrl('student/onboard/' + student.id);
+    this._router.navigateByUrl(Constants.routes.onboard + student.id);
   }
 
   intiateDeleteStudent(student: IStudent) {
@@ -66,7 +67,7 @@ export class DashboardComponent implements OnInit {
       .pipe(finalize(() => this._loader.hide()))
       .subscribe((data) => {
         this.getStudents();
-        this._msgService.showMessage('Successfully Removed the student');
+        this._msgService.showMessage(Constants.messages.deleteStudent);
       });
   }
 
