@@ -107,6 +107,23 @@
       "last_score": 67,
       "dob": "9/10/2018",
       "id": 10
+    },
+    {
+      "documents": {
+        "Domicile": true,
+        "Marksheets": true,
+        "Birth Certificate": true,
+        "Police Clearance": true,
+        "Passport": true,
+        "Declaration": true
+      },
+      "category": "International",
+      "name": "test student",
+      "father_name": "test father",
+      "mother_name": "test mother",
+      "last_score": 69,
+      "dob": "10/14/2018",
+      "id": 11
     }
   ]
 }
