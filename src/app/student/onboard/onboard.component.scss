@@ -1,3 +1,4 @@
+@import "../../../styles/_theme.scss";
 .form-container{
     max-width: 70%;
     margin:0px auto;
@@ -14,4 +15,10 @@ bs-datepicker-inline{
             }
         }
     }
+}
+
+.no-student{
+    width:375px;
+    margin: 0 auto;
+    color: $secondary-color;
 }

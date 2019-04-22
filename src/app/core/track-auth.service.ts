@@ -24,8 +24,7 @@ export class TrackAuthService {
       }
     }
     else {
-      window.localStorage.removeItem('appToken');
-      window.localStorage.removeItem('personName');
+      window.localStorage.clear();
     }
     this.isAuthenticated$.next(auth);
   }

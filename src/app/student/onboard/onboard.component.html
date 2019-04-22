@@ -1,5 +1,5 @@
 <div class="form-container">
-  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit(isEdit)" (ngReset)="registrationForm.reset()">
+  <form *ngIf="!isNoStudentFound" [formGroup]="registrationForm" (ngSubmit)="onSubmit(isEdit)" (ngReset)="registrationForm.reset()">
       <h6>Fields marked with ( <span class="required"></span> ) are compulsary.</h6><br />
     <div class="form-group row">
       <label for="Student Name" class="col-sm-2 col-form-label">Student Name <span class="required"></span></label>
@@ -95,5 +95,5 @@
       </div>
     </div>
   </form>
-
+  <div *ngIf="isNoStudentFound" class="no-student"><h1>! No Student Found</h1></div>
 </div>

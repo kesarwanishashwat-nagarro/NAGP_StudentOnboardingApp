@@ -67,14 +67,18 @@ nav{
 }
 .nav-item{
     font-weight: 600;
-    &.active{
-        background-color: #fff;
-        pointer-events: none;
-    }
     a{
         color: #000;
         &:hover{
             color: #fff;
+        }
+    }
+    &.active{
+        background-color: #fff;
+        &:hover{
+            a{
+                color: #000;
+            }
         }
     }
 }

@@ -30,14 +30,18 @@ export class OnboardComponent implements OnInit {
   isEdit: boolean;
   id: number
   selectedCategory = this.CategoryOptions[1].name;
+  isNoStudentFound: boolean;
 
   ngOnInit() {
+    this.isNoStudentFound = false;
     this.documentOptions = this._route.snapshot.data['documents'];
     const resolvedStudent = this._route.snapshot.data['student'];
     this.id = this._route.snapshot.params['id'];
     if (resolvedStudent && resolvedStudent.length) {
       this.studentData = resolvedStudent[0];
-      this.selectedCategory = this.studentData.category;
+      if(this.studentData){
+        this.selectedCategory = this.studentData.category;
+      }
     }
     const formDocumentControls = this.getDocumentControls(this.selectedCategory);
     this.registrationForm = this.formBuilder.group({
@@ -55,12 +59,18 @@ export class OnboardComponent implements OnInit {
       maxDate: new Date(),
       value: this.studentData ? this.studentData.dob : new Date()
     }
-    this.datepicker.setConfig();
+    if(this.datepicker){
+      this.datepicker.setConfig();
+    }
     if (this.id) {
-      this.isEdit = this._studentService.isEdit;
-      this.fillStudentDetails(this.studentData);
-      if (!this.isEdit) {
-        this.registrationForm.disable();
+      if(this.studentData){
+        this.isEdit = this._studentService.isEdit;
+        this.fillStudentDetails(this.studentData);
+        if (!this.isEdit) {
+          this.registrationForm.disable();
+        }
+      }else{
+        this.isNoStudentFound = true;
       }
     }
   }

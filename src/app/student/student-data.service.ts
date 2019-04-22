@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../core/services/api.service';
 import { IStudent } from '../core/model/models';
 import { Observable, of } from 'rxjs';
+import { LocalStorageService } from '../core/services/local-storage.service';
+import { map } from 'rxjs/internal/operators/map';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +13,20 @@ export class StudentDataService {
   documentsAPI = 'docs';
   isEdit: boolean;
   private _selectedStudent: IStudent;
-  constructor(private _api: ApiService) { }
+  constructor(private _api: ApiService, private local:LocalStorageService) { }
 
   getSelectedStudent(id?: number): Observable<IStudent> | Observable<any> {
     if (this._selectedStudent) {
       return of([this._selectedStudent]);
     } else {
-      return this._api.get<IStudent>(this.studentAPI + '?id=' + id);
+      let students: IStudent[] = this.local.getData(this.studentAPI);
+      if(students){
+        const localStudent = students.filter( (student) => student.id == id)[0];
+        return of([localStudent]);
+      }
+      else{
+        return this._api.get<IStudent>(this.studentAPI + '?id=' + id);
+      }
     }
   }
 
@@ -26,7 +35,14 @@ export class StudentDataService {
   }
 
   getAllStudents() {
-    return this._api.get<IStudent[]>(this.studentAPI);
+    const students = this.local.getData(this.studentAPI);
+    if(!students){
+      return this._api.get<IStudent[]>(this.studentAPI).pipe(map((data) => { 
+        this.local.setData(this.studentAPI, data)
+        return data;
+      }));
+    }
+    return of(students);
   }
 
   getAllDocuments() {
@@ -34,14 +50,43 @@ export class StudentDataService {
   }
 
   onBoardStudent(student: IStudent): Observable<IStudent> {
-    return this._api.post<IStudent, IStudent>(this.studentAPI, student);
+    let students = this.local.getData(this.studentAPI);
+    if(!students){
+      students = [];
+    }
+    return this._api.post<IStudent, IStudent>(this.studentAPI, student).pipe(map((data) => {
+      students.push(data);
+      this.local.updateData(this.studentAPI, students);
+      return student;
+    }));
   }
 
   saveEditedStudent(id: number, student: IStudent): Observable<IStudent> {
-    return this._api.put<IStudent, IStudent>(this.studentAPI + '/' + id, student);
+    let students: IStudent[] = this.local.getData(this.studentAPI);
+    if(!students){
+      students = [];
+    }
+    const localStudent = students.filter( (student) => student.id === id)[0];
+    const index = students.indexOf(localStudent);
+    students.splice(index, 1);
+    return this._api.put<IStudent, IStudent>(this.studentAPI + '/' + id, student).pipe(map((data) => {
+      students.splice(index,0,data);
+      this.local.updateData(this.studentAPI, students);
+      return student;
+    }));
   }
 
   deleteStudent(id: number): Observable<any>{
-    return this._api.delete(this.studentAPI + '/' + id);
+    let students: IStudent[] = this.local.getData(this.studentAPI);
+    if(!students){
+      students = [];
+    }
+    const localStudent = students.filter( (student) => student.id === id)[0];
+    const index = students.indexOf(localStudent);
+    students.splice(index, 1);
+    return this._api.delete(this.studentAPI + '/' + id).pipe(map((data) => {
+      this.local.updateData(this.studentAPI, students);
+      return data;
+    }));
   }
 }
