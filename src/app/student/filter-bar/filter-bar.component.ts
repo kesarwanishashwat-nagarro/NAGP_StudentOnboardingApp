@@ -17,7 +17,8 @@ export class FilterBarComponent implements OnInit {
   @Output() onGridClicked = new EventEmitter;
   @Output() categoryChanged = new EventEmitter<string>();
   ngOnInit() {
-    this.categories.push('ALL');
+    if (this.categories.indexOf('ALL') < 0)
+      this.categories.push('ALL');
   }
 
   onInputChange() {
