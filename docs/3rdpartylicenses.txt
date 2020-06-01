@@ -317,6 +317,9 @@ MIT
 
 ngx-bootstrap/dropdown
 
+ng2-device-detector
+MIT
+
 ngx-bootstrap/positioning
 
 @angular/core
