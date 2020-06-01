@@ -3,6 +3,7 @@ import { LoaderService } from './core/services/loader.service';
 import { TrackAuthService } from './core/track-auth.service';
 import { NavigationStart, NavigationEnd, NavigationCancel, NavigationError, Router } from '@angular/router';
 import { MessageService } from './core/services/message.service';
+import { Ng2DeviceService } from 'ng2-device-detector';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit {
   isLoggedIn: boolean;
   isHeaderStick: boolean;
   constructor(private _loader: LoaderService, private _trackAuth: TrackAuthService,
-    private _router: Router, private _msgService: MessageService){
+    private _router: Router, private _msgService: MessageService,private deviceDetectorService: Ng2DeviceService){
 
   }
   ngOnInit(): void {
@@ -23,6 +24,8 @@ export class AppComponent implements OnInit {
     this._trackAuth.isAuthenticated$.subscribe( (auth) => {
       this.isLoggedIn = auth;
     });
+    alert('device: ' + this.deviceDetectorService.device);
+    alert('os: ' + this.deviceDetectorService.os);
     this._router.events.subscribe((routerEvent: any) => {
       this.checkRouterEvent(routerEvent);
     });
