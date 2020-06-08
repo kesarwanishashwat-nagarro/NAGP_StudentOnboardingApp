@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     const data = this.deviceDetectorService.getDeviceInfo();
     let res = '';
     for(let key in data){
-      res += key + ': ' + data[key]
+      res += key + ': ' + data[key] + '\n';
     }
     alert(res);
     this._router.events.subscribe((routerEvent: any) => {
