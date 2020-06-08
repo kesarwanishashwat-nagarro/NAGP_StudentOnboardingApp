@@ -24,8 +24,12 @@ export class AppComponent implements OnInit {
     this._trackAuth.isAuthenticated$.subscribe( (auth) => {
       this.isLoggedIn = auth;
     });
-    alert('device: ' + this.deviceDetectorService.device);
-    alert('os: ' + this.deviceDetectorService.os);
+    const data = this.deviceDetectorService.getDeviceInfo();
+    let res = '';
+    for(let key in data){
+      res += key + ': ' + data[key]
+    }
+    alert(res);
     this._router.events.subscribe((routerEvent: any) => {
       this.checkRouterEvent(routerEvent);
     });
