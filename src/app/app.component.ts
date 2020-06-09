@@ -35,14 +35,19 @@ export class AppComponent implements OnInit {
     const device = deviceDetector.parse(this.deviceDetectorService.userAgent);
     // alert(device);
     let res = '';
-    for(let key in device){
-      res += key + ': ' + device[key] + '\n';
-    }
+    res = this.readObject(device, res);
     alert(res);
     this._router.events.subscribe((routerEvent: any) => {
       this.checkRouterEvent(routerEvent);
     });
     this._msgService.headerSticked.subscribe((isStick) => this.isHeaderStick = isStick);
+  }
+
+  private readObject(device: Detector.DeviceDetectorResult, res: string) {
+    for (let key in device.device) {
+      res += key + ': ' + device[key] + '\n';
+    }
+    return res;
   }
 
   checkRouterEvent(routerEvent: Event): void {
