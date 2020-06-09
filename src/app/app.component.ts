@@ -4,6 +4,7 @@ import { TrackAuthService } from './core/track-auth.service';
 import { NavigationStart, NavigationEnd, NavigationCancel, NavigationError, Router } from '@angular/router';
 import { MessageService } from './core/services/message.service';
 import { Ng2DeviceService } from 'ng2-device-detector';
+import * as Detector from "device-detector-js";
 
 @Component({
   selector: 'app-root',
@@ -24,10 +25,18 @@ export class AppComponent implements OnInit {
     this._trackAuth.isAuthenticated$.subscribe( (auth) => {
       this.isLoggedIn = auth;
     });
-    const data = this.deviceDetectorService.getDeviceInfo();
+    // const data = this.deviceDetectorService.getDeviceInfo();
+    // let res = '';
+    // for(let key in data){
+    //   res += key + ': ' + data[key] + '\n';
+    // }
+    // alert(res);
+    const deviceDetector = new Detector();
+    const device = deviceDetector.parse(this.deviceDetectorService.userAgent);
+    // alert(device);
     let res = '';
-    for(let key in data){
-      res += key + ': ' + data[key] + '\n';
+    for(let key in device){
+      res += key + ': ' + device[key] + '\n';
     }
     alert(res);
     this._router.events.subscribe((routerEvent: any) => {
