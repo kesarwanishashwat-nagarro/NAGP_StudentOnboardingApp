@@ -38,14 +38,16 @@ export class AppComponent implements OnInit {
   }
 
   private readObject(device: DeviceDetectorResult, res: string) {
+    res += '{ \n';
     for (let key in device) {
       if(device[key] instanceof Object){
-        res += key + ': \n';
+        res += key + ':';
         res = this.readObject(device[key], res);
       }else{
         res += key + ': ' + device[key] + '\n';
       }
     }
+    res += '} \n';
     return res;
   }
 
