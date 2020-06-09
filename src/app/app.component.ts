@@ -4,8 +4,8 @@ import { TrackAuthService } from './core/track-auth.service';
 import { NavigationStart, NavigationEnd, NavigationCancel, NavigationError, Router } from '@angular/router';
 import { MessageService } from './core/services/message.service';
 import { Ng2DeviceService } from 'ng2-device-detector';
-import * as Detector from "device-detector-js";
 import * as DeviceDetector from "device-detector-js";
+import { DeviceDetectorResult } from 'device-detector-js';
 
 @Component({
   selector: 'app-root',
@@ -26,16 +26,9 @@ export class AppComponent implements OnInit {
     this._trackAuth.isAuthenticated$.subscribe( (auth) => {
       this.isLoggedIn = auth;
     });
-    // const data = this.deviceDetectorService.getDeviceInfo();
-    // let res = '';
-    // for(let key in data){
-    //   res += key + ': ' + data[key] + '\n';
-    // }
-    // alert(res);
     const deviceDetector = new DeviceDetector();
     const device = deviceDetector.parse(this.deviceDetectorService.userAgent);
-    // alert(device);
-    let res = 'navigator.userAgent: ' + this.deviceDetectorService.userAgent + '\n';
+    let res = 'userAgent: ' + this.deviceDetectorService.userAgent + '\n';
     res = this.readObject(device, res);
     alert(res);
     this._router.events.subscribe((routerEvent: any) => {
@@ -44,9 +37,14 @@ export class AppComponent implements OnInit {
     this._msgService.headerSticked.subscribe((isStick) => this.isHeaderStick = isStick);
   }
 
-  private readObject(device: Detector.DeviceDetectorResult, res: string) {
-    for (let key in device.device) {
-      res += key + ': ' + device.device[key] + '\n';
+  private readObject(device: DeviceDetectorResult, res: string) {
+    for (let key in device) {
+      if(device[key] instanceof Object){
+        res += key + ': \n';
+        res = this.readObject(device[key], res);
+      }else{
+        res += key + ': ' + device[key] + '\n';
+      }
     }
     return res;
   }
