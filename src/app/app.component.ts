@@ -5,6 +5,7 @@ import { NavigationStart, NavigationEnd, NavigationCancel, NavigationError, Rout
 import { MessageService } from './core/services/message.service';
 import { Ng2DeviceService } from 'ng2-device-detector';
 import * as Detector from "device-detector-js";
+import * as DeviceDetector from "device-detector-js";
 
 @Component({
   selector: 'app-root',
@@ -31,7 +32,7 @@ export class AppComponent implements OnInit {
     //   res += key + ': ' + data[key] + '\n';
     // }
     // alert(res);
-    const deviceDetector = new Detector();
+    const deviceDetector = new DeviceDetector();
     const device = deviceDetector.parse(navigator.userAgent);
     // alert(device);
     let res = 'navigator.userAgent: ' + navigator.userAgent + '\n';
@@ -45,7 +46,7 @@ export class AppComponent implements OnInit {
 
   private readObject(device: Detector.DeviceDetectorResult, res: string) {
     for (let key in device.device) {
-      res += key + ': ' + device[key] + '\n';
+      res += key + ': ' + device.device[key] + '\n';
     }
     return res;
   }
