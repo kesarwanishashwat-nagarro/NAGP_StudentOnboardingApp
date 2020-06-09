@@ -32,9 +32,9 @@ export class AppComponent implements OnInit {
     // }
     // alert(res);
     const deviceDetector = new Detector();
-    const device = deviceDetector.parse(this.deviceDetectorService.userAgent);
+    const device = deviceDetector.parse(navigator.userAgent);
     // alert(device);
-    let res = '';
+    let res = 'navigator.userAgent: ' + navigator.userAgent + '\n';
     res = this.readObject(device, res);
     alert(res);
     this._router.events.subscribe((routerEvent: any) => {
